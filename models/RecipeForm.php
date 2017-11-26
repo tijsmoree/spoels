@@ -37,13 +37,16 @@ class RecipeForm extends Model {
             $recipe = new Recipe();
             $recipe->id = Recipe::find()->max('id') + 1;
             $recipe->name = $this->name;
+            
             if($this->time != NULL)
                 $recipe->time = $this->time . ':00';
+            
             if($this->persons == NULL) {
                 $recipe->persons = 0;
             } else {
                 $recipe->persons = $this->persons;
             }
+            
             $recipe->body = $this->body;
             $recipe->insert();
 
