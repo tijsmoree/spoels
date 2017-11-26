@@ -16,13 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h4>Ingrediënten</h4>
     <ul class="list-group">
-    	<?php foreach($recipe->getIngredients() as $ingredient):
-    		if($ingredient->amount == NULL) {
-    			$IngredientName = $ingredient->name;
-    		} else {
-    			$IngredientName = $ingredient->amount . ' ' . strtolower($ingredient->name);
-    		} ?>
-    		<li class="list-group-item"><?= Html::encode($IngredientName) ?></li>
+    	<?php foreach($recipe->getIngredients() as $ingredient): ?>
+    		<li class="list-group-item"><?= Html::encode($ingredient) ?></li>
     	<?php endforeach; ?>
     </ul>
     <h4>Bereidingswijze</h4>

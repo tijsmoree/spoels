@@ -37,17 +37,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p>Ingrediënten: <?php $i = sizeof($recipe->getIngredients());
                     $i > 7 ? $i = 5 : $i += 1;
                     foreach($recipe->getIngredients() as $ingredient):
-                        echo strtolower($ingredient->name);
+                        echo strtolower($ingredient);
                         if(--$i == 1) break;
                         echo ', ';
                     endforeach; ?></p>
                     <div class="btn-group pull-right pull-down"><?php
                     echo HTML::a('Recept &raquo;',
                         Url::to(['recipe/' . $recipe->id]),
-                        [
-                            'style' => "vertical-align:middle",
-                            'class' => "btn btn-default"
-                        ]);
+                        ['class' => "btn btn-default"]);
                     if(!Yii::$app->user->isGuest):
                         echo Html::a(
                             '<span class="glyphicon glyphicon-edit"></span>',
@@ -56,7 +53,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         echo Html::a(
                             '<span class="glyphicon glyphicon-trash"></span>',
                             Url::to(['recipe/' . $recipe->id . '/delete']),
-                            ['class' => "btn btn-danger"]);
+                            [
+                                'class' => "btn btn-danger",
+                                'onClick' => 'return confirm("Are you sure?");'
+                            ]);
                     endif; ?>
                     </div>
                 </div>

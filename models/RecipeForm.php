@@ -15,7 +15,7 @@ class RecipeForm extends Model {
 
     public function rules() {
         return [
-            [['name', 'body'], 'required'],
+            [['name', 'body', 'ingredients'], 'required'],
             [['time'], 'date', 'format' => 'HH:mm'],
             [['persons'], 'number'],
         ];
@@ -46,7 +46,8 @@ class RecipeForm extends Model {
             } else {
                 $recipe->persons = $this->persons;
             }
-            
+
+            $recipe->ingredients = $this->ingredients;
             $recipe->body = $this->body;
             $recipe->insert();
 

@@ -11,6 +11,7 @@ class Person extends ActiveRecord {
             [['id'], 'integer'],
             [['active'], 'boolean'],
             [['first_name', 'last_name', 'email'], 'safe'],
+            //[['date_of_birth'], 'date'],
             [['phone'], 'integer']
         ];
     }

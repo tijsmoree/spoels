@@ -4,7 +4,6 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Recipe;
-use app\models\Ingredients;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -58,7 +57,7 @@ class RecipeController extends Controller
 
         $recipe = Recipe::findOne($id);
 
-        if(!$recipe == NULL && $recipe->deleteFully())
+        if(!$recipe == NULL && $recipe->delete())
             Yii::$app->session->setFlash('recipeDeleted');
 
         return $this->render('list', ['recipes' => Recipe::getAll()]);

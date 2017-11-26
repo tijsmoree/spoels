@@ -28,9 +28,12 @@ $this->params['breadcrumbs'][] = $this->title;
 				<?= $formRecipe->field($form, 'persons')->input('number', [
                     'placeholder' => $form->getAttributeLabel('persons')
                 ]); ?>
+                <?= $formRecipe->field($form, 'ingredients')->textarea([
+                    'placeholder' => $form->getAttributeLabel('ingredients')
+                ]); ?>
                 <?= $formRecipe->field($form, 'body')->textarea([
                     'placeholder' => $form->getAttributeLabel('body')
-				]); ?>
+                ]); ?>
 
                 <div class="form-group">
                     <?= Html::submitButton('Opslaan', ['class' => 'btn btn-primary', 'name' => 'recipe-button']) ?>

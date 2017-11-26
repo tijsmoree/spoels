@@ -44,10 +44,14 @@ $this->params['breadcrumbs'][] = $this->title;
 					'value' => $person->email,
                     'placeholder' => $profile->getAttributeLabel('email')
 				]); ?>
-				<?= $formProfile->field($profile, 'phone')->textInput([
-					'value' => $person->phone,
+                <?= $formProfile->field($profile, 'phone')->textInput([
+                    'value' => $person->phone,
                     'placeholder' => $profile->getAttributeLabel('phone')
-				]); ?>
+                ]); /*?>
+                <?= $formProfile->field($profile, 'date_of_birth')->input('date', [
+                    'value' => $person->date_of_birth,
+                    'placeholder' => $profile->getAttributeLabel('date_of_birth')
+                ]); */?>
 
                 <div class="form-group">
                     <?= Html::submitButton('Opslaan', ['class' => 'btn btn-primary', 'name' => 'profile-button']) ?>

@@ -157,18 +157,4 @@ class SiteController extends Controller {
             'admin' => $admin
         ]);
     }
-
-    public function actionRecipe($id = '') {
-        $recipe = Recipe::findOne($id);
-        if($recipe == NULL) {
-            $recipes = Recipe::getAll();
-            usort($recipes, function($a, $b) {
-                return strcmp($a->name, $b->name);
-            });
-
-            return $this->render('recipes', ['recipes' => $recipes]);
-        }
-
-        return $this->render('recipe', ['recipe' => $recipe]);
-    }
 }

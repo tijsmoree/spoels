@@ -9,7 +9,7 @@ class Recipe extends ActiveRecord {
     {
         return [
             [['id', 'active', 'persons'], 'integer'],
-            [['name', 'time', 'body'], 'safe'],
+            [['name', 'time', 'ingredients', 'body'], 'safe'],
         ];
     }
 
@@ -41,17 +41,6 @@ class Recipe extends ActiveRecord {
     }
 
 	public function getIngredients() {
-		return Ingredients::findAll(['recipe_id' => $this->id]);
+		return explode("\r\n", $this->ingredients);
 	}
-
-    public function deleteFully() {
-        $ingredients = Ingredients::findAll(['recipe_id' => $this->id]);
-            
-        foreach($ingredients as $ingredient)
-            $ingredient->delete();
-        
-        $this->delete();
-
-        return true;
-    }
 }

@@ -17,8 +17,8 @@ class ProfileForm extends Model {
         return [
             [['first_name', 'last_name', 'email', 'phone'], 'required'],
             ['email', 'email'],
+            //['date_of_birth', 'date', 'format' => 'yyyy-mm-dd'],
             ['phone', 'number'],
-            //['date_of_birth', 'date'],
         ];
     }
 
@@ -29,7 +29,7 @@ class ProfileForm extends Model {
             'last_name' => 'Achternaam',
             'email' => 'Mailadres',
             'phone' => 'Telefoonnummer',
-            'date_of_birth' => 'Geboortedatum',
+            //'date_of_birth' => 'Geboortedatum',
         ];
     }
 
@@ -39,6 +39,7 @@ class ProfileForm extends Model {
             $person->last_name = $this->last_name;
             $person->email = $this->email;
             $person->phone = $this->phone;
+            //$person->date_of_birth = '07-21-1997';//Yii::$app->formatter->asDate($this->date_of_birth, 'php:Y-m-d');
             $person->save();
 
             return true;            
