@@ -40,6 +40,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-left'],
         'items' => [
             ['label' => 'Inwoners', 'url' => ['/site/person']],
+            ['label' => 'Recepten', 'url' => ['/site/recipe']],
             ['label' => 'Over', 'url' => ['/site/about']],
             //['label' => 'Contact', 'url' => ['/site/contact']],
         ],

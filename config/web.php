@@ -49,8 +49,9 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                "/person/<id:\d+>" => "site/person",
                 "/<action>/" => "site/<action>/",
+                "/person/<id:\d+>" => "site/person",
+                "/recipe/<id:\d+>" => "site/recipe",
             ],
         ],
     ],

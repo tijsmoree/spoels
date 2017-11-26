@@ -13,6 +13,7 @@ use app\models\Person;
 use app\models\Admin;
 use app\models\ProfileForm;
 use app\models\PasswordForm;
+use app\models\Recipe;
 
 class SiteController extends Controller {
     /**
@@ -169,5 +170,19 @@ class SiteController extends Controller {
         }
 
         return $this->render('person', ['person' => $person]);
+    }
+
+    public function actionRecipe($id = '') {
+        $recipe = Recipe::findOne($id);
+        if($recipe == NULL) {
+            $recipes = Recipe::getAll();
+            usort($recipes, function($a, $b) {
+                return strcmp($a->last_name, $b->last_name);
+            });
+
+            return $this->render('recipes', ['recipes' => $recipes]);
+        }
+
+        return $this->render('recipe', ['recipe' => $recipe]);
     }
 }
