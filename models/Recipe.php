@@ -29,7 +29,7 @@ class Recipe extends ActiveRecord {
 	}
 
     public function getTime() {
-        $h = date('g', strtotime($this->time));
+        $h = date('G', strtotime($this->time));
         $m = date('i', strtotime($this->time));
         
         if($h == 0) {
@@ -44,4 +44,15 @@ class Recipe extends ActiveRecord {
 	public function getIngredients() {
 		return Ingredients::findAll(['recipe_id' => $this->id]);
 	}
+
+    public function deleteFully() {
+        $ingredients = Ingredients::findAll(['recipe_id' => $this->id]);
+            
+        foreach($ingredients as $ingredient)
+            $ingredient->delete();
+        
+        $this->delete();
+
+        return true;
+    }
 }

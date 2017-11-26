@@ -7,10 +7,21 @@ $this->title = 'Recepten';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-<div class="site-recepten">
+<div class="site-recipes">
 
     <div class="body-content">
         <h1>Recepten</h1>
+        <?php if(Yii::$app->session->hasFlash('recipeDeleted')): ?>
+            <div class="alert alert-success">
+                <strong>Verwijderd!</strong> Het recept is verwijderd.
+            </div>
+        <?php endif;
+
+        if(!Yii::$app->user->isGuest)
+            echo Html::a(
+                '<span class="glyphicon glyphicon-plus"></span> Toevoegen',
+                Url::to(['recipe/create']),
+                ['class' => "btn btn-success pull-right"]); ?>
         <div class="row">
             <?php foreach($recipes as $recipe): ?>
                 <div class="col-lg-3">

@@ -25,6 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
     		<li class="list-group-item"><?= Html::encode($IngredientName) ?></li>
     	<?php endforeach; ?>
     </ul>
-    <h4>Beschrijving</h4>
+    <h4>Bereidingswijze</h4>
     <p><?= Html::encode($recipe->body) ?></p>
 </div>

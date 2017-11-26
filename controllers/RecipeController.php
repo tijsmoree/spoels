@@ -8,6 +8,7 @@ use app\models\Ingredients;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
+use app\models\RecipeForm;
 
 class RecipeController extends Controller
 {
@@ -25,19 +26,10 @@ class RecipeController extends Controller
         ];
     }
 
-    /**
-     * Lists all Name models.
-     * @return mixed
-     */
     public function actionList() {
         return $this->render('list', ['recipes' => Recipe::getAll()]);
     }
 
-    /**
-     * Displays a single Name model.
-     * @param integer $id
-     * @return mixed
-     */
     public function actionView($id) {
         $recipe = Recipe::findOne($id);
 
@@ -48,36 +40,44 @@ class RecipeController extends Controller
         return $this->render('view', ['recipe' => $recipe]);
     }
 
-    public function actionEdit($id) {
-        if (Yii::$app->user->isGuest) {
+    public function actionEdit($id = '') {
+        if (Yii::$app->user->isGuest)
             return $this->goHome();
-        }
 
         $recipe = Recipe::findOne($id);
 
-        if($recipe == NULL) {
+        if($recipe == NULL)
             return $this->render('list', ['recipes' => Recipe::getAll()]);
-        }
 
         return $this->render('edit', ['recipe' => $recipe]);
     }
 
-    public function actionDelete($id) {
-        if (Yii::$app->user->isGuest) {
+    public function actionDelete($id = '') {
+        if (Yii::$app->user->isGuest)
             return $this->goHome();
-        }
 
         $recipe = Recipe::findOne($id);
 
-        if(!$recipe == NULL) {
-            $ingredients = Ingredients::findAll(['recipe_id' => $id]);
-            
-            foreach($ingredients as $ingredient)
-                $ingredient->delete();
-            
-            $recipe->delete();
-        }
+        if(!$recipe == NULL && $recipe->deleteFully())
+            Yii::$app->session->setFlash('recipeDeleted');
 
         return $this->render('list', ['recipes' => Recipe::getAll()]);
+    }
+
+    public function actionCreate() {
+        if (Yii::$app->user->isGuest)
+            return $this->goHome();
+
+        $form = new RecipeForm();
+
+        if ($form->load(Yii::$app->request->post()) && $form->insert($person)) {
+            Yii::$app->session->setFlash('profileFormSubmitted');
+
+            return $this->refresh();
+        }
+
+        return $this->render('create', [
+            'form' => $form
+        ]);
     }
 }
