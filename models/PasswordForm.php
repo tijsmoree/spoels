@@ -12,6 +12,7 @@ class PasswordForm extends Model {
     public function rules() {
         return [
             [['password', 'reenter'], 'required'],
+            [['reenter'], 'compare', 'compareAttribute' => 'password']
         ];
     }
 

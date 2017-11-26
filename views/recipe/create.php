@@ -27,8 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
 				]); ?>
 				<?= $formRecipe->field($form, 'persons')->input('number', [
                     'placeholder' => $form->getAttributeLabel('persons')
-				]); ?>
-				<?= $formRecipe->field($form, 'body')->textarea([
+                ]); ?>
+                <?= $formRecipe->field($form, 'body')->textarea([
                     'placeholder' => $form->getAttributeLabel('body')
 				]); ?>
 

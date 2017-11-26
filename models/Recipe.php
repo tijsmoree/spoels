@@ -10,7 +10,6 @@ class Recipe extends ActiveRecord {
         return [
             [['id', 'active', 'persons'], 'integer'],
             [['name', 'time', 'body'], 'safe'],
-            [['time'], 'time']
         ];
     }
 

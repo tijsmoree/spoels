@@ -15,14 +15,18 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="alert alert-success">
                 <strong>Verwijderd!</strong> Het recept is verwijderd.
             </div>
+        <?php elseif(Yii::$app->session->hasFlash('recipeCreated')): ?>
+            <div class="alert alert-success">
+                <strong>Aangemaakt!</strong> Je hebt een recept aangemaakt!
+            </div>
         <?php endif;
 
         if(!Yii::$app->user->isGuest)
             echo Html::a(
                 '<span class="glyphicon glyphicon-plus"></span> Toevoegen',
                 Url::to(['recipe/create']),
-                ['class' => "btn btn-success pull-right"]); ?>
-        <div class="row">
+                ['class' => "btn btn-success"]); ?>
+        <div class="row row-eq-height">
             <?php foreach($recipes as $recipe): ?>
                 <div class="col-lg-3">
                     <h2><?= $recipe->name ?></h2>
@@ -37,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         if(--$i == 1) break;
                         echo ', ';
                     endforeach; ?></p>
-                    <div class="btn-group pull-right align-bottom"><?php
+                    <div class="btn-group pull-right pull-down"><?php
                     echo HTML::a('Recept &raquo;',
                         Url::to(['recipe/' . $recipe->id]),
                         [

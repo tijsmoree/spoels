@@ -70,10 +70,10 @@ class RecipeController extends Controller
 
         $form = new RecipeForm();
 
-        if ($form->load(Yii::$app->request->post()) && $form->insert($person)) {
-            Yii::$app->session->setFlash('profileFormSubmitted');
+        if ($form->load(Yii::$app->request->post()) && $form->insert()) {
+            Yii::$app->session->setFlash('recipeCreated');
 
-            return $this->refresh();
+            return $this->render('list', ['recipes' => Recipe::getAll()]);
         }
 
         return $this->render('create', [
