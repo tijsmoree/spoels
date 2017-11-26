@@ -158,26 +158,12 @@ class SiteController extends Controller {
         ]);
     }
 
-    public function actionPerson($id = '') {
-        $person = Person::findOne($id);
-        if($person == NULL) {
-            $persons = Person::findAll(['active' => true]);
-            usort($persons, function($a, $b) {
-                return strcmp($a->last_name, $b->last_name);
-            });
-
-            return $this->render('persons', ['persons' => $persons]);
-        }
-
-        return $this->render('person', ['person' => $person]);
-    }
-
     public function actionRecipe($id = '') {
         $recipe = Recipe::findOne($id);
         if($recipe == NULL) {
             $recipes = Recipe::getAll();
             usort($recipes, function($a, $b) {
-                return strcmp($a->last_name, $b->last_name);
+                return strcmp($a->name, $b->name);
             });
 
             return $this->render('recipes', ['recipes' => $recipes]);

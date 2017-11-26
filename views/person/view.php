@@ -4,12 +4,12 @@
 
 use yii\helpers\Html;
 
-$this->title = $recipe->name;
-$this->params['breadcrumbs'][] = ['label' => 'Recepten', 'url' => ['recipe']];
+$this->title = $person->first_name . ' ' . $person->last_name;
+$this->params['breadcrumbs'][] = ['label' => 'Inwoners', 'url' => ['list']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-content">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p><?= Html::encode($recipe->getTime()) ?></p>
+    <p><?= Html::encode($person->email) ?></p>
 </div>

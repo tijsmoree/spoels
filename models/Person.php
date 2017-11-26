@@ -23,7 +23,7 @@ class Person extends ActiveRecord {
 		$persons = Person::findAll(['active' => true]);
         
         usort($persons, function($a, $b) {
-            return strcmp($a->first_name, $b->first_name);
+            return strcmp($a->last_name, $b->last_name);
         });
 
         return $persons;
